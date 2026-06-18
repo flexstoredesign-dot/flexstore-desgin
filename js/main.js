@@ -28,6 +28,7 @@ const FlextstoreEngine = (() => {
   let previewRect = null;
   let pointerState = { x: "50%", y: "20%" };
   let currentLanguage = "pl";
+  const visibleProjectVideos = new Set();
   const introSessionKey = "flextstoreIntroSeen";
   const languageStorageKey = "flextstoreLanguage";
   const introEnabled = true;
@@ -319,18 +320,32 @@ const FlextstoreEngine = (() => {
 
   const initHeader = () => {
     if (!menuToggle) return;
-    menuToggle.addEventListener("click", () => {
-      const isOpen = body.classList.toggle("menu-open");
+
+    const setMenuState = (isOpen) => {
+      body.classList.toggle("menu-open", isOpen);
       menuToggle.setAttribute("aria-expanded", String(isOpen));
       menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+      if (isOpen) {
+        pauseAllProjectVideos();
+      } else {
+        syncProjectVideos();
+      }
+    };
+
+    menuToggle.addEventListener("click", () => {
+      setMenuState(!body.classList.contains("menu-open"));
     });
 
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        body.classList.remove("menu-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
+        setMenuState(false);
       });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && body.classList.contains("menu-open")) {
+        setMenuState(false);
+      }
     });
   };
 
@@ -495,6 +510,39 @@ const FlextstoreEngine = (() => {
     video.pause();
   };
 
+  const pauseAllProjectVideos = () => {
+    projectVideos.forEach(pauseVideo);
+  };
+
+  const syncProjectVideos = () => {
+    if (!projectVideos.length) return;
+
+    if (body.classList.contains("menu-open") || isReduced()) {
+      pauseAllProjectVideos();
+      return;
+    }
+
+    if (isSmall()) {
+      const firstVisible = Array.from(projectVideos).find((video) => visibleProjectVideos.has(video));
+      projectVideos.forEach((video) => {
+        if (video === firstVisible) {
+          playVideo(video);
+        } else {
+          pauseVideo(video);
+        }
+      });
+      return;
+    }
+
+    projectVideos.forEach((video) => {
+      if (visibleProjectVideos.has(video)) {
+        playVideo(video);
+      } else {
+        pauseVideo(video);
+      }
+    });
+  };
+
   const initVideos = () => {
     if (!projectVideos.length) return;
 
@@ -524,7 +572,7 @@ const FlextstoreEngine = (() => {
     });
 
     if (!("IntersectionObserver" in window)) {
-      projectVideos.forEach(playVideo);
+      if (!isSmall()) projectVideos.forEach(playVideo);
       return;
     }
 
@@ -532,17 +580,22 @@ const FlextstoreEngine = (() => {
       entries.forEach((entry) => {
         const video = entry.target;
         if (entry.isIntersecting) {
-          playVideo(video);
+          visibleProjectVideos.add(video);
         } else {
-          pauseVideo(video);
+          visibleProjectVideos.delete(video);
         }
       });
+      syncProjectVideos();
     }, {
-      rootMargin: isSmall() ? "80px 0px" : "180px 0px",
-      threshold: 0.18
+      rootMargin: isSmall() ? "40px 0px" : "160px 0px",
+      threshold: isSmall() ? 0.36 : 0.18
     });
 
     projectVideos.forEach((video) => videoObserver.observe(video));
+
+    if (typeof smallScreenQuery.addEventListener === "function") {
+      smallScreenQuery.addEventListener("change", syncProjectVideos);
+    }
   };
 
   const initPortfolioPreview = () => {
