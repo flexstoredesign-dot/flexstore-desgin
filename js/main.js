@@ -498,7 +498,11 @@ const FlextstoreEngine = (() => {
   };
 
   const playVideo = (video) => {
-    if (!video || !video.isConnected) return;
+    if (!video || !video.isConnected || isReduced()) return;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
     const playPromise = video.play();
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(() => {});
@@ -514,6 +518,33 @@ const FlextstoreEngine = (() => {
     projectVideos.forEach(pauseVideo);
   };
 
+  const prepareVideo = (video) => {
+    if (!video || !video.isConnected || isReduced()) return;
+
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    video.setAttribute("preload", "auto");
+
+    if (video.dataset.loaded === "true") return;
+
+    video.dataset.loaded = "true";
+    try {
+      video.load();
+    } catch (error) {
+      // A missing or unsupported video should keep the poster visible.
+    }
+  };
+
+  const distanceFromViewportCenter = (video) => {
+    const rect = video.closest(".project-card")?.getBoundingClientRect() || video.getBoundingClientRect();
+    const cardCenter = rect.top + rect.height / 2;
+    return Math.abs(cardCenter - window.innerHeight / 2);
+  };
+
   const syncProjectVideos = () => {
     if (!projectVideos.length) return;
 
@@ -523,9 +554,14 @@ const FlextstoreEngine = (() => {
     }
 
     if (isSmall()) {
-      const firstVisible = Array.from(projectVideos).find((video) => visibleProjectVideos.has(video));
+      const playableVideos = Array.from(projectVideos)
+        .filter((video) => visibleProjectVideos.has(video))
+        .sort((a, b) => distanceFromViewportCenter(a) - distanceFromViewportCenter(b))
+        .slice(0, 2);
+
       projectVideos.forEach((video) => {
-        if (video === firstVisible) {
+        if (playableVideos.includes(video)) {
+          prepareVideo(video);
           playVideo(video);
         } else {
           pauseVideo(video);
@@ -536,6 +572,7 @@ const FlextstoreEngine = (() => {
 
     projectVideos.forEach((video) => {
       if (visibleProjectVideos.has(video)) {
+        prepareVideo(video);
         playVideo(video);
       } else {
         pauseVideo(video);
@@ -550,9 +587,20 @@ const FlextstoreEngine = (() => {
       const media = video.closest(".project-media");
       const poster = video.getAttribute("poster");
 
-      video.addEventListener("canplay", () => {
+      video.muted = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("preload", "metadata");
+
+      const markReady = () => {
+        if (isReduced()) return;
         media?.classList.add("is-ready");
-      }, { once: true });
+      };
+
+      video.addEventListener("canplay", markReady, { once: true });
+      video.addEventListener("loadeddata", markReady, { once: true });
 
       const markFailed = () => {
         if (!media) return;
@@ -572,7 +620,12 @@ const FlextstoreEngine = (() => {
     });
 
     if (!("IntersectionObserver" in window)) {
-      if (!isSmall()) projectVideos.forEach(playVideo);
+      if (!isSmall() && !isReduced()) {
+        projectVideos.forEach((video) => {
+          prepareVideo(video);
+          playVideo(video);
+        });
+      }
       return;
     }
 
@@ -581,14 +634,15 @@ const FlextstoreEngine = (() => {
         const video = entry.target;
         if (entry.isIntersecting) {
           visibleProjectVideos.add(video);
+          prepareVideo(video);
         } else {
           visibleProjectVideos.delete(video);
         }
       });
       syncProjectVideos();
     }, {
-      rootMargin: isSmall() ? "40px 0px" : "160px 0px",
-      threshold: isSmall() ? 0.36 : 0.18
+      rootMargin: isSmall() ? "600px 0px" : "250px 0px",
+      threshold: 0.01
     });
 
     projectVideos.forEach((video) => videoObserver.observe(video));
