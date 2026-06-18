@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Flextstore Design creates premium custom websites and Shopify stores for ambitious brands, built for performance, conversion and scale.">
-  <title>Flextstore Design | Premium Websites & Shopify Stores</title>
+  <meta name="description" content="Flextstore Design tworzy nowoczesne strony internetowe i sklepy Shopify dla marek, które chcą wyglądać profesjonalnie i sprzedawać skuteczniej.">
+  <title>Flextstore Design | Strony internetowe premium i sklepy Shopify</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -32,44 +32,53 @@
     </button>
 
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="#home">Home</a>
-      <a href="#work">Work</a>
-      <a href="#services">Services</a>
-      <a href="#process">Process</a>
-      <a href="#contact">Contact</a>
+      <a href="#home" data-i18n="navHome">Start</a>
+      <a href="#work" data-i18n="navWork">Realizacje</a>
+      <a href="#services" data-i18n="navServices">Usługi</a>
+      <a href="#process" data-i18n="navProcess">Proces</a>
+      <a href="#contact" data-i18n="navContact">Kontakt</a>
       <a class="nav-social" href="https://www.instagram.com/flextstore.design/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @flextstore.design">
         <span class="instagram-icon" aria-hidden="true"></span>
       </a>
+      <div class="language-switcher" aria-label="Wybór języka">
+        <button class="lang-button is-active" type="button" data-lang="pl" aria-pressed="true">
+          <span class="flag" aria-hidden="true">🇵🇱</span>
+          <span>PL</span>
+        </button>
+        <button class="lang-button" type="button" data-lang="en" aria-pressed="false">
+          <span class="flag" aria-hidden="true">🇬🇧</span>
+          <span>EN</span>
+        </button>
+      </div>
     </nav>
 
     <a class="header-cta whatsapp-link" href="https://wa.me/48533794902" target="_blank" rel="noopener noreferrer">
       <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.6 21.4l4.8-1.1A9.8 9.8 0 0 0 19.1 4.9Zm-7.1 14a7.1 7.1 0 0 1-3.6-1l-.3-.2-2.8.7.7-2.7-.2-.3a7.2 7.2 0 1 1 6.2 3.5Zm4-5.3c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.6.7-.7.9-.3.1-.5 0a5.8 5.8 0 0 1-1.7-1 6.2 6.2 0 0 1-1.1-1.4c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5s0-.3-.1-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3s-.8.8-.8 1.9 1 2.2 1.1 2.4a8.4 8.4 0 0 0 3.3 2.9c.5.2.9.4 1.2.5.5.2 1 .1 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1Z"/>
       </svg>
-      <span>WhatsApp</span>
+      <span data-i18n="whatsappShort">WhatsApp</span>
     </a>
   </header>
 
   <main>
     <section class="hero section-shell" id="home">
       <div class="hero-content">
-        <div class="badge hero-badge">WE DESIGN &bull; YOU GROW</div>
-        <h1>
-          Premium <span class="text-cyan">Websites</span> &amp;<br>
-          <span class="text-gradient">Shopify Stores</span>
+        <div class="badge hero-badge" data-i18n="heroBadge">PROJEKTUJEMY &bull; TY ROŚNIESZ</div>
+        <h1 data-i18n-html="heroTitle">
+          <span class="text-cyan">Strony internetowe premium</span> &amp;<br>
+          <span class="text-gradient">sklepy Shopify</span>
         </h1>
-        <p class="hero-kicker">Modern. Custom. High Converting.</p>
-        <p class="hero-copy">
-          Flextstore Design creates premium websites and Shopify stores for ambitious brands.
-          Built for performance. Designed to convert. Made to scale.
+        <p class="hero-kicker" data-i18n="heroKicker">Nowoczesne. Indywidualne. Nastawione na sprzedaż.</p>
+        <p class="hero-copy" data-i18n="heroCopy">
+          Flextstore Design tworzy nowoczesne strony internetowe i sklepy Shopify dla marek, które chcą wyglądać profesjonalnie, działać szybciej i sprzedawać skuteczniej.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#work">View Projects</a>
+          <a class="btn btn-primary" href="#work" data-i18n="heroPrimary">Zobacz projekty</a>
           <a class="btn btn-secondary whatsapp-link" href="https://wa.me/48533794902" target="_blank" rel="noopener noreferrer">
             <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.6 21.4l4.8-1.1A9.8 9.8 0 0 0 19.1 4.9Zm-7.1 14a7.1 7.1 0 0 1-3.6-1l-.3-.2-2.8.7.7-2.7-.2-.3a7.2 7.2 0 1 1 6.2 3.5Zm4-5.3c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.6.7-.7.9-.3.1-.5 0a5.8 5.8 0 0 1-1.7-1 6.2 6.2 0 0 1-1.1-1.4c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5s0-.3-.1-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3s-.8.8-.8 1.9 1 2.2 1.1 2.4a8.4 8.4 0 0 0 3.3 2.9c.5.2.9.4 1.2.5.5.2 1 .1 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1Z"/>
             </svg>
-            <span>Message on WhatsApp</span>
+            <span data-i18n="whatsappLong">Napisz na WhatsApp</span>
           </a>
         </div>
       </div>
@@ -96,21 +105,21 @@
         </div>
         <div class="launch-card">
           <span class="launch-icon"></span>
-          <p>Launching brands beyond limits</p>
+          <p data-i18n="launchCard">Wysyłamy marki ponad limity</p>
         </div>
       </div>
 
       <a class="scroll-indicator" href="#work" aria-label="Scroll to selected projects">
-        <span></span>
-        Scroll to explore
+        <span class="scroll-dot"></span>
+        <span data-i18n="scrollExplore">Przewiń dalej</span>
       </a>
     </section>
 
     <section class="projects section-shell" id="work">
       <div class="section-heading">
-        <p class="eyebrow">Our Work</p>
-        <h2>Selected Projects</h2>
-        <p>Real results for brands that aim higher.</p>
+        <p class="eyebrow" data-i18n="projectsLabel">NASZE REALIZACJE</p>
+        <h2 data-i18n="projectsTitle">Wybrane projekty</h2>
+        <p data-i18n="projectsSubtitle">Realizacje dla marek, które chcą wyglądać lepiej i sprzedawać skuteczniej.</p>
       </div>
 
       <div class="poster-showcase" aria-label="Project poster previews">
@@ -119,33 +128,33 @@
           <div class="poster-preview-frame">
             <span class="poster-preview-shine"></span>
             <img class="poster-preview-image" src="assets/posters/nina-poster.jpg" alt="">
-            <p class="poster-preview-label">Psychologist Website</p>
+            <p class="poster-preview-label" data-i18n="project1Title">Strona dla psychologa</p>
           </div>
         </div>
 
-        <article class="poster-card" tabindex="0" data-poster="assets/posters/nina-poster.jpg" data-label="Psychologist Website">
+        <article class="poster-card" tabindex="0" data-poster="assets/posters/nina-poster.jpg" data-label="Strona dla psychologa" data-i18n-attr="data-label:project1Title">
           <div class="poster-orbit"></div>
           <div class="poster-shine"></div>
-          <img class="poster-image" src="assets/posters/nina-poster.jpg" alt="Psychologist Website poster">
-          <p class="poster-label">Psychologist Website</p>
+          <img class="poster-image" src="assets/posters/nina-poster.jpg" alt="Strona dla psychologa poster" data-i18n-attr="alt:poster1Alt">
+          <p class="poster-label" data-i18n="project1Title">Strona dla psychologa</p>
         </article>
-        <article class="poster-card" tabindex="0" data-poster="assets/posters/shopify-store-1-poster.jpg" data-label="Shopify Store">
+        <article class="poster-card" tabindex="0" data-poster="assets/posters/shopify-store-1-poster.jpg" data-label="Sklep Shopify" data-i18n-attr="data-label:project2Title">
           <div class="poster-orbit"></div>
           <div class="poster-shine"></div>
-          <img class="poster-image" src="assets/posters/shopify-store-1-poster.jpg" alt="Shopify Store poster">
-          <p class="poster-label">Shopify Store</p>
+          <img class="poster-image" src="assets/posters/shopify-store-1-poster.jpg" alt="Sklep Shopify poster" data-i18n-attr="alt:poster2Alt">
+          <p class="poster-label" data-i18n="project2Title">Sklep Shopify</p>
         </article>
-        <article class="poster-card" tabindex="0" data-poster="assets/posters/shopify-store-2-poster.jpg" data-label="Shopify Website">
+        <article class="poster-card" tabindex="0" data-poster="assets/posters/shopify-store-2-poster.jpg" data-label="Strona Shopify" data-i18n-attr="data-label:project3Title">
           <div class="poster-orbit"></div>
           <div class="poster-shine"></div>
-          <img class="poster-image" src="assets/posters/shopify-store-2-poster.jpg" alt="Shopify Website poster">
-          <p class="poster-label">Shopify Website</p>
+          <img class="poster-image" src="assets/posters/shopify-store-2-poster.jpg" alt="Strona Shopify poster" data-i18n-attr="alt:poster3Alt">
+          <p class="poster-label" data-i18n="project3Title">Strona Shopify</p>
         </article>
-        <article class="poster-card" tabindex="0" data-poster="assets/posters/shopify-store-3-poster.jpg" data-label="Shopify Brand Store">
+        <article class="poster-card" tabindex="0" data-poster="assets/posters/shopify-store-3-poster.jpg" data-label="Sklep marki Shopify" data-i18n-attr="data-label:project4Title">
           <div class="poster-orbit"></div>
           <div class="poster-shine"></div>
-          <img class="poster-image" src="assets/posters/shopify-store-3-poster.jpg" alt="Shopify Brand Store poster">
-          <p class="poster-label">Shopify Brand Store</p>
+          <img class="poster-image" src="assets/posters/shopify-store-3-poster.jpg" alt="Sklep marki Shopify poster" data-i18n-attr="alt:poster4Alt">
+          <p class="poster-label" data-i18n="project4Title">Sklep marki Shopify</p>
         </article>
       </div>
 
@@ -155,18 +164,18 @@
             <span></span><span></span><span></span>
           </div>
           <div class="project-media gradient-fallback">
-            <img class="project-poster" src="assets/posters/nina-poster.jpg" alt="Psychologist Website preview">
+            <img class="project-poster" src="assets/posters/nina-poster.jpg" alt="Strona dla psychologa preview" data-i18n-attr="alt:project1PreviewAlt">
             <video class="project-video" muted loop playsinline preload="metadata" poster="assets/posters/nina-poster.jpg">
               <source src="assets/videos/nina-preview.mp4" type="video/mp4">
             </video>
-            <div class="fallback-label">Preview Loading</div>
+            <div class="fallback-label" data-i18n="previewLoading">Ładowanie podglądu</div>
           </div>
           <div class="project-content">
             <div>
-              <h3 class="project-title">Psychologist Website</h3>
-              <p class="project-meta">Custom Website</p>
+              <h3 class="project-title" data-i18n="project1Title">Strona dla psychologa</h3>
+              <p class="project-meta" data-i18n="project1Type">Strona usługowa</p>
             </div>
-            <span class="metric-badge project-badge">Premium service website</span>
+            <span class="metric-badge project-badge" data-i18n="project1Badge">Profesjonalny wizerunek online</span>
           </div>
         </article>
 
@@ -175,18 +184,18 @@
             <span></span><span></span><span></span>
           </div>
           <div class="project-media gradient-fallback">
-            <img class="project-poster" src="assets/posters/shopify-store-1-poster.jpg" alt="Shopify Store preview">
+            <img class="project-poster" src="assets/posters/shopify-store-1-poster.jpg" alt="Sklep Shopify preview" data-i18n-attr="alt:project2PreviewAlt">
             <video class="project-video" muted loop playsinline preload="metadata" poster="assets/posters/shopify-store-1-poster.jpg">
               <source src="assets/videos/shopify-store-1.mp4" type="video/mp4">
             </video>
-            <div class="fallback-label">Shopify Preview</div>
+            <div class="fallback-label" data-i18n="shopifyPreview">Podgląd Shopify</div>
           </div>
           <div class="project-content">
             <div>
-              <h3 class="project-title">Shopify Store</h3>
-              <p class="project-meta">Shopify Design &amp; Development</p>
+              <h3 class="project-title" data-i18n="project2Title">Sklep Shopify</h3>
+              <p class="project-meta" data-i18n="project2Type">Projekt i wdrożenie Shopify</p>
             </div>
-            <span class="metric-badge project-badge">E-commerce ready to sell</span>
+            <span class="metric-badge project-badge" data-i18n="project2Badge">Gotowy do sprzedaży</span>
           </div>
         </article>
 
@@ -195,18 +204,18 @@
             <span></span><span></span><span></span>
           </div>
           <div class="project-media gradient-fallback">
-            <img class="project-poster" src="assets/posters/shopify-store-2-poster.jpg" alt="Shopify Website preview">
+            <img class="project-poster" src="assets/posters/shopify-store-2-poster.jpg" alt="Strona Shopify preview" data-i18n-attr="alt:project3PreviewAlt">
             <video class="project-video" muted loop playsinline preload="metadata" poster="assets/posters/shopify-store-2-poster.jpg">
               <source src="assets/videos/shopify-store-2.mp4" type="video/mp4">
             </video>
-            <div class="fallback-label">Brand Preview</div>
+            <div class="fallback-label" data-i18n="brandPreview">Podgląd marki</div>
           </div>
           <div class="project-content">
             <div>
-              <h3 class="project-title">Shopify Website</h3>
-              <p class="project-meta">Shopify E-commerce Development</p>
+              <h3 class="project-title" data-i18n="project3Title">Strona Shopify</h3>
+              <p class="project-meta" data-i18n="project3Type">Shopify e-commerce development</p>
             </div>
-            <span class="metric-badge project-badge">Optimized for conversions</span>
+            <span class="metric-badge project-badge" data-i18n="project3Badge">Optymalizacja konwersji</span>
           </div>
         </article>
 
@@ -215,18 +224,18 @@
             <span></span><span></span><span></span>
           </div>
           <div class="project-media gradient-fallback">
-            <img class="project-poster" src="assets/posters/shopify-store-3-poster.jpg" alt="Shopify Brand Store preview">
+            <img class="project-poster" src="assets/posters/shopify-store-3-poster.jpg" alt="Sklep marki Shopify preview" data-i18n-attr="alt:project4PreviewAlt">
             <video class="project-video" muted loop playsinline preload="metadata" poster="assets/posters/shopify-store-3-poster.jpg">
               <source src="assets/videos/shopify-store-3.mp4" type="video/mp4">
             </video>
-            <div class="fallback-label">Shopify Preview</div>
+            <div class="fallback-label" data-i18n="shopifyPreview">Podgląd Shopify</div>
           </div>
           <div class="project-content">
             <div>
-              <h3 class="project-title">Shopify Brand Store</h3>
-              <p class="project-meta">Shopify Store Development</p>
+              <h3 class="project-title" data-i18n="project4Title">Sklep marki Shopify</h3>
+              <p class="project-meta" data-i18n="project4Type">Shopify store development</p>
             </div>
-            <span class="metric-badge project-badge">Fast, modern and scalable</span>
+            <span class="metric-badge project-badge" data-i18n="project4Badge">Szybki, nowoczesny i skalowalny</span>
           </div>
         </article>
       </div>
@@ -241,16 +250,16 @@
           </svg>
         </div>
         <div class="portfolio-content">
-          <p class="eyebrow">Portfolio</p>
-          <h2>Full Portfolio Archive</h2>
-          <p>Explore selected Shopify stores, custom websites and visual references in one expanded portfolio archive.</p>
+          <p class="eyebrow" data-i18n="portfolioLabel">PORTFOLIO</p>
+          <h2 data-i18n="portfolioTitle">Pełne portfolio</h2>
+          <p data-i18n="portfolioSubtitle">Zobacz wybrane sklepy Shopify, strony internetowe i dodatkowe realizacje w rozszerzonym archiwum.</p>
         </div>
         <div class="portfolio-actions">
           <a class="btn btn-primary" href="https://drive.google.com/drive/folders/15Kg9qyhIHrxc9IWEC-zouW7JRsOSGOxQ?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnFnwjS1V6oFeglCIHz8TL5MZbIweKJMQTDfx7HeWynP9dJFSz5oBgZqRGVo8_aem_rvVkCqGlxJWDREAcvgNQmw" target="_blank" rel="noopener noreferrer">
-            View Full Portfolio
+            <span data-i18n="portfolioButton">Zobacz pełne portfolio</span>
           </a>
           <button class="btn btn-secondary portfolio-preview-toggle" type="button" data-iframe-src="https://drive.google.com/embeddedfolderview?id=15Kg9qyhIHrxc9IWEC-zouW7JRsOSGOxQ#grid">
-            Preview Drive Archive
+            Podgląd archiwum
           </button>
         </div>
       </div>
@@ -266,8 +275,8 @@
             </svg>
           </span>
           <span class="archive-card-copy">
-            <strong>Shopify Stores</strong>
-            <span>E-commerce builds and Shopify storefronts</span>
+            <strong data-i18n="archive1Title">Sklepy Shopify</strong>
+            <span data-i18n="archive1Subtitle">Sklepy internetowe i storefronty Shopify</span>
           </span>
           <span class="archive-card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -284,8 +293,8 @@
             </svg>
           </span>
           <span class="archive-card-copy">
-            <strong>Custom Websites</strong>
-            <span>Premium coded websites and landing pages</span>
+            <strong data-i18n="archive2Title">Strony custom</strong>
+            <span data-i18n="archive2Subtitle">Nowoczesne strony kodowane indywidualnie</span>
           </span>
           <span class="archive-card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -302,8 +311,8 @@
             </svg>
           </span>
           <span class="archive-card-copy">
-            <strong>Service Websites</strong>
-            <span>Psychologists, local businesses and service brands</span>
+            <strong data-i18n="archive3Title">Strony usługowe</strong>
+            <span data-i18n="archive3Subtitle">Psycholodzy, lokalne firmy i marki usługowe</span>
           </span>
           <span class="archive-card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -321,8 +330,8 @@
             </svg>
           </span>
           <span class="archive-card-copy">
-            <strong>Visual References</strong>
-            <span>Moodboards, layouts and selected visual direction</span>
+            <strong data-i18n="archive4Title">Inspiracje wizualne</strong>
+            <span data-i18n="archive4Subtitle">Moodboardy, layouty i kierunki wizualne</span>
           </span>
           <span class="archive-card-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -334,18 +343,18 @@
         <div class="portfolio-viewer">
           <div class="portfolio-browser-bar">
             <div class="browser-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-            <p>Google Drive Portfolio Preview</p>
-            <a href="https://drive.google.com/drive/folders/15Kg9qyhIHrxc9IWEC-zouW7JRsOSGOxQ?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnFnwjS1V6oFeglCIHz8TL5MZbIweKJMQTDfx7HeWynP9dJFSz5oBgZqRGVo8_aem_rvVkCqGlxJWDREAcvgNQmw" target="_blank" rel="noopener noreferrer">Open in Google Drive</a>
+            <p data-i18n="drivePreviewTitle">Podgląd portfolio Google Drive</p>
+            <a href="https://drive.google.com/drive/folders/15Kg9qyhIHrxc9IWEC-zouW7JRsOSGOxQ?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnFnwjS1V6oFeglCIHz8TL5MZbIweKJMQTDfx7HeWynP9dJFSz5oBgZqRGVo8_aem_rvVkCqGlxJWDREAcvgNQmw" target="_blank" rel="noopener noreferrer" data-i18n="driveOpen">Otwórz w Google Drive</a>
           </div>
           <div class="portfolio-iframe-shell">
             <div class="portfolio-loader" role="status" aria-live="polite">
               <span class="loader-orbit" aria-hidden="true"></span>
-              <p>Loading portfolio archive...</p>
+              <p data-i18n="driveLoading">Ładowanie archiwum portfolio...</p>
             </div>
           </div>
           <div class="portfolio-preview-copy">
-            <p>Google Drive preview may display default folder icons. For the best experience, open the full portfolio.</p>
-            <p>If the preview does not load, open the full portfolio in Google Drive.</p>
+            <p data-i18n="driveNote">Podgląd Google Drive może pokazywać domyślne ikony folderów. Dla najlepszego efektu otwórz pełne portfolio.</p>
+            <p data-i18n="driveFallback">Jeśli podgląd się nie załaduje, otwórz pełne portfolio w Google Drive.</p>
           </div>
         </div>
       </div>
@@ -353,75 +362,75 @@
 
     <section class="services section-shell" id="services">
       <div class="section-heading">
-        <p class="eyebrow">Services</p>
-        <h2>What We Do</h2>
+        <p class="eyebrow" data-i18n="servicesLabel">USŁUGI</p>
+        <h2 data-i18n="servicesTitle">Co tworzę</h2>
       </div>
 
       <div class="services-grid">
         <article class="service-card">
           <span class="service-icon icon-code"></span>
-          <h3>Custom Website Design</h3>
-          <p>Distinctive interfaces shaped around your brand, goals and audience.</p>
+          <h3 data-i18n="service1Title">Projektowanie stron custom</h3>
+          <p data-i18n="service1Text">Indywidualne strony dopasowane do marki, celu i odbiorców.</p>
         </article>
         <article class="service-card">
           <span class="service-icon icon-store"></span>
-          <h3>Shopify Store Design</h3>
-          <p>Premium storefronts crafted for trust, clarity and conversion.</p>
+          <h3 data-i18n="service2Title">Projektowanie sklepów Shopify</h3>
+          <p data-i18n="service2Text">Sklepy budowane pod zaufanie, przejrzystość i sprzedaż.</p>
         </article>
         <article class="service-card">
           <span class="service-icon icon-cart"></span>
-          <h3>E-commerce Development</h3>
-          <p>Clean builds with product flows, collections and checkout paths that sell.</p>
+          <h3 data-i18n="service3Title">E-commerce development</h3>
+          <p data-i18n="service3Text">Wdrożenia z dopracowaną strukturą produktów, kolekcji i ścieżek zakupowych.</p>
         </article>
         <article class="service-card">
           <span class="service-icon icon-ui"></span>
-          <h3>UI/UX Design</h3>
-          <p>Polished journeys that make every interaction feel intentional.</p>
+          <h3 data-i18n="service4Title">UI/UX design</h3>
+          <p data-i18n="service4Text">Przejrzyste doświadczenia, które prowadzą użytkownika do działania.</p>
         </article>
         <article class="service-card">
           <span class="service-icon icon-speed"></span>
-          <h3>Speed &amp; SEO Optimization</h3>
-          <p>Fast, discoverable pages with technical fundamentals handled properly.</p>
+          <h3 data-i18n="service5Title">Optymalizacja szybkości i SEO</h3>
+          <p data-i18n="service5Text">Szybsze, czytelne i lepiej przygotowane technicznie strony.</p>
         </article>
         <article class="service-card">
           <span class="service-icon icon-support"></span>
-          <h3>Ongoing Support</h3>
-          <p>Reliable improvements, fixes and guidance after launch.</p>
+          <h3 data-i18n="service6Title">Stałe wsparcie</h3>
+          <p data-i18n="service6Text">Rozwój, poprawki i konsultacje po publikacji projektu.</p>
         </article>
       </div>
     </section>
 
     <section class="process section-shell" id="process">
       <div class="section-heading centered">
-        <p class="eyebrow">Our Process</p>
-        <h2>Our Proven Process</h2>
+        <p class="eyebrow" data-i18n="processLabel">PROCES</p>
+        <h2 data-i18n="processTitle">Jak wygląda współpraca</h2>
       </div>
 
       <div class="process-track">
         <article class="process-step">
           <span>01</span>
-          <h3>Discover</h3>
-          <p>We define your goals, market and launch direction.</p>
+          <h3 data-i18n="process1Title">Analiza</h3>
+          <p data-i18n="process1Text">Poznajemy cele, markę i kierunek projektu.</p>
         </article>
         <article class="process-step">
           <span>02</span>
-          <h3>Plan</h3>
-          <p>We map the structure, content and conversion strategy.</p>
+          <h3 data-i18n="process2Title">Plan</h3>
+          <p data-i18n="process2Text">Układamy strukturę, treści i strategię konwersji.</p>
         </article>
         <article class="process-step">
           <span>03</span>
-          <h3>Design</h3>
-          <p>We create a premium visual system that fits your brand.</p>
+          <h3 data-i18n="process3Title">Projekt</h3>
+          <p data-i18n="process3Text">Tworzymy dopracowany system wizualny dopasowany do marki.</p>
         </article>
         <article class="process-step">
           <span>04</span>
-          <h3>Develop</h3>
-          <p>We build a clean, responsive and scalable experience.</p>
+          <h3 data-i18n="process4Title">Wdrożenie</h3>
+          <p data-i18n="process4Text">Kodujemy szybkie, responsywne i skalowalne doświadczenie.</p>
         </article>
         <article class="process-step">
           <span>05</span>
-          <h3>Launch</h3>
-          <p>We test, polish and help your site go live with confidence.</p>
+          <h3 data-i18n="process5Title">Publikacja</h3>
+          <p data-i18n="process5Text">Testujemy, dopracowujemy i pomagamy wystartować bez chaosu.</p>
         </article>
       </div>
     </section>
@@ -429,16 +438,16 @@
     <section class="why section-shell">
       <div class="why-content">
         <div class="section-heading">
-          <p class="eyebrow">Why Choose Us</p>
-          <h2>Why Flextstore Design?</h2>
+          <p class="eyebrow" data-i18n="whyLabel">DLACZEGO MY</p>
+          <h2 data-i18n="whyTitle">Dlaczego Flextstore Design?</h2>
         </div>
         <ul class="why-list">
-          <li>Premium &amp; custom solutions</li>
-          <li>Conversion-focused approach</li>
-          <li>Fast delivery</li>
-          <li>Transparent communication</li>
-          <li>Safe and structured workflow</li>
-          <li>Shopify + custom code expertise</li>
+          <li data-i18n="why1">Indywidualne projekty premium</li>
+          <li data-i18n="why2">Podejście nastawione na konwersję</li>
+          <li data-i18n="why3">Szybka realizacja</li>
+          <li data-i18n="why4">Przejrzysta komunikacja</li>
+          <li data-i18n="why5">Bezpieczny i uporządkowany proces</li>
+          <li data-i18n="why6">Shopify + custom code</li>
         </ul>
       </div>
 
@@ -454,43 +463,52 @@
     <section class="final-cta section-shell" id="contact">
       <div class="cta-orbit" aria-hidden="true"></div>
       <div class="mini-rocket" aria-hidden="true"></div>
-      <p class="eyebrow">Ready to launch?</p>
-      <h2>Let's Build Something <span>Extraordinary</span></h2>
-      <p>A premium website is not just an expense. It is an investment in your brand's future.</p>
+      <p class="eyebrow" data-i18n="ctaLabel">GOTOWY NA START?</p>
+      <h2 data-i18n-html="ctaTitle">Zbudujmy coś <span>wyjątkowego</span></h2>
+      <p data-i18n="ctaText">Profesjonalna strona to nie koszt. To inwestycja w wizerunek i rozwój Twojej marki.</p>
       <div class="cta-actions">
         <a class="btn btn-primary whatsapp-link" href="https://wa.me/48533794902" target="_blank" rel="noopener noreferrer">
           <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.6 21.4l4.8-1.1A9.8 9.8 0 0 0 19.1 4.9Zm-7.1 14a7.1 7.1 0 0 1-3.6-1l-.3-.2-2.8.7.7-2.7-.2-.3a7.2 7.2 0 1 1 6.2 3.5Zm4-5.3c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.6.7-.7.9-.3.1-.5 0a5.8 5.8 0 0 1-1.7-1 6.2 6.2 0 0 1-1.1-1.4c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5s0-.3-.1-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3s-.8.8-.8 1.9 1 2.2 1.1 2.4a8.4 8.4 0 0 0 3.3 2.9c.5.2.9.4 1.2.5.5.2 1 .1 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1Z"/>
           </svg>
-          <span>Message on WhatsApp</span>
+          <span data-i18n="whatsappLong">Napisz na WhatsApp</span>
         </a>
         <a class="social-button" href="https://www.instagram.com/flextstore.design/" target="_blank" rel="noopener noreferrer" aria-label="Follow Flextstore Design on Instagram">
           <span class="instagram-icon" aria-hidden="true"></span>
-          <span>@flextstore.design</span>
+          <span data-i18n="instagramHandle">@flextstore.design</span>
         </a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <a class="brand footer-brand" href="#top" aria-label="Flextstore Design home">
-      <img class="brand-logo" src="assets/logo.jpg" alt="Flextstore Design logo">
-    </a>
-    <div class="footer-contact">
-      <a class="footer-social" href="https://www.instagram.com/flextstore.design/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @flextstore.design">
-        <span class="instagram-icon" aria-hidden="true"></span>
-        <span>@flextstore.design</span>
+    <div class="footer-inner">
+      <a class="brand footer-brand" href="#top" aria-label="Flextstore Design home">
+        <img class="brand-logo" src="assets/logo.jpg" alt="Flextstore Design logo">
       </a>
-      <a class="footer-social whatsapp-link" href="https://wa.me/48533794902" target="_blank" rel="noopener noreferrer">
-        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.6 21.4l4.8-1.1A9.8 9.8 0 0 0 19.1 4.9Zm-7.1 14a7.1 7.1 0 0 1-3.6-1l-.3-.2-2.8.7.7-2.7-.2-.3a7.2 7.2 0 1 1 6.2 3.5Zm4-5.3c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.6.7-.7.9-.3.1-.5 0a5.8 5.8 0 0 1-1.7-1 6.2 6.2 0 0 1-1.1-1.4c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5s0-.3-.1-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3s-.8.8-.8 1.9 1 2.2 1.1 2.4a8.4 8.4 0 0 0 3.3 2.9c.5.2.9.4 1.2.5.5.2 1 .1 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1Z"/>
-        </svg>
-        <span>WhatsApp</span>
-      </a>
-      <a class="footer-social" href="https://drive.google.com/drive/folders/15Kg9qyhIHrxc9IWEC-zouW7JRsOSGOxQ?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnFnwjS1V6oFeglCIHz8TL5MZbIweKJMQTDfx7HeWynP9dJFSz5oBgZqRGVo8_aem_rvVkCqGlxJWDREAcvgNQmw" target="_blank" rel="noopener noreferrer">Full Portfolio</a>
-      <a href="mailto:flexstore.design@gmail.com">flexstore.design@gmail.com</a>
+      <div class="footer-actions">
+        <a class="footer-social" href="https://www.instagram.com/flextstore.design/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @flextstore.design">
+          <span class="instagram-icon" aria-hidden="true"></span>
+          <span data-i18n="footerInstagram">Instagram</span>
+        </a>
+        <a class="footer-social whatsapp-link" href="https://wa.me/48533794902" target="_blank" rel="noopener noreferrer">
+          <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.6 21.4l4.8-1.1A9.8 9.8 0 0 0 19.1 4.9Zm-7.1 14a7.1 7.1 0 0 1-3.6-1l-.3-.2-2.8.7.7-2.7-.2-.3a7.2 7.2 0 1 1 6.2 3.5Zm4-5.3c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.6.7-.7.9-.3.1-.5 0a5.8 5.8 0 0 1-1.7-1 6.2 6.2 0 0 1-1.1-1.4c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5s0-.3-.1-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3s-.8.8-.8 1.9 1 2.2 1.1 2.4a8.4 8.4 0 0 0 3.3 2.9c.5.2.9.4 1.2.5.5.2 1 .1 1.4.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1Z"/>
+          </svg>
+          <span data-i18n="whatsappShort">WhatsApp</span>
+        </a>
+        <a class="footer-social" href="https://drive.google.com/drive/folders/15Kg9qyhIHrxc9IWEC-zouW7JRsOSGOxQ?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnFnwjS1V6oFeglCIHz8TL5MZbIweKJMQTDfx7HeWynP9dJFSz5oBgZqRGVo8_aem_rvVkCqGlxJWDREAcvgNQmw" target="_blank" rel="noopener noreferrer">
+          <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3.5 7.5c0-1.1.9-2 2-2h4.2l2 2.5h6.8c1.1 0 2 .9 2 2v6.5c0 1.1-.9 2-2 2h-13c-1.1 0-2-.9-2-2v-9Z"/>
+          </svg>
+          <span data-i18n="footerPortfolio">Pełne portfolio</span>
+        </a>
+      </div>
+      <div class="footer-meta">
+        <a class="footer-email" href="mailto:flexstore.design@gmail.com">flexstore.design@gmail.com</a>
+        <p data-i18n="footerCopyright">&copy; 2026 Flextstore Design. Wszelkie prawa zastrzeżone.</p>
+      </div>
     </div>
-    <p>&copy; <span id="year"></span> Flextstore Design. All rights reserved.</p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>

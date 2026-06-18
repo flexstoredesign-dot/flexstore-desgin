@@ -18,6 +18,8 @@ const FlextstoreEngine = (() => {
   const portfolioToggle = document.querySelector(".portfolio-preview-toggle");
   const portfolioPanel = document.querySelector(".portfolio-preview-panel");
   const portfolioIframeShell = document.querySelector(".portfolio-iframe-shell");
+  const langButtons = document.querySelectorAll(".lang-button");
+  const metaDescription = document.querySelector('meta[name="description"]');
 
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const smallScreenQuery = window.matchMedia("(max-width: 767px)");
@@ -25,13 +27,291 @@ const FlextstoreEngine = (() => {
   let rafId = 0;
   let previewRect = null;
   let pointerState = { x: "50%", y: "20%" };
+  let currentLanguage = "pl";
   const introSessionKey = "flextstoreIntroSeen";
+  const languageStorageKey = "flextstoreLanguage";
   const introEnabled = true;
+
+  const translations = {
+    pl: {
+      pageTitle: "Flextstore Design | Strony internetowe premium i sklepy Shopify",
+      metaDescription: "Flextstore Design tworzy nowoczesne strony internetowe i sklepy Shopify dla marek, które chcą wyglądać profesjonalnie i sprzedawać skuteczniej.",
+      navHome: "Start",
+      navWork: "Realizacje",
+      navServices: "Usługi",
+      navProcess: "Proces",
+      navContact: "Kontakt",
+      whatsappShort: "WhatsApp",
+      whatsappLong: "Napisz na WhatsApp",
+      instagramHandle: "@flextstore.design",
+      heroBadge: "PROJEKTUJEMY • TY ROŚNIESZ",
+      heroTitle: '<span class="text-cyan">Strony internetowe premium</span> &amp;<br><span class="text-gradient">sklepy Shopify</span>',
+      heroKicker: "Nowoczesne. Indywidualne. Nastawione na sprzedaż.",
+      heroCopy: "Flextstore Design tworzy nowoczesne strony internetowe i sklepy Shopify dla marek, które chcą wyglądać profesjonalnie, działać szybciej i sprzedawać skuteczniej.",
+      heroPrimary: "Zobacz projekty",
+      launchCard: "Wysyłamy marki ponad limity",
+      scrollExplore: "Przewiń dalej",
+      projectsLabel: "NASZE REALIZACJE",
+      projectsTitle: "Wybrane projekty",
+      projectsSubtitle: "Realizacje dla marek, które chcą wyglądać lepiej i sprzedawać skuteczniej.",
+      project1Title: "Strona dla psychologa",
+      project1Type: "Strona usługowa",
+      project1Badge: "Profesjonalny wizerunek online",
+      project2Title: "Sklep Shopify",
+      project2Type: "Projekt i wdrożenie Shopify",
+      project2Badge: "Gotowy do sprzedaży",
+      project3Title: "Strona Shopify",
+      project3Type: "Shopify e-commerce development",
+      project3Badge: "Optymalizacja konwersji",
+      project4Title: "Sklep marki Shopify",
+      project4Type: "Shopify store development",
+      project4Badge: "Szybki, nowoczesny i skalowalny",
+      poster1Alt: "Strona dla psychologa poster",
+      poster2Alt: "Sklep Shopify poster",
+      poster3Alt: "Strona Shopify poster",
+      poster4Alt: "Sklep marki Shopify poster",
+      project1PreviewAlt: "Strona dla psychologa preview",
+      project2PreviewAlt: "Sklep Shopify preview",
+      project3PreviewAlt: "Strona Shopify preview",
+      project4PreviewAlt: "Sklep marki Shopify preview",
+      previewLoading: "Ładowanie podglądu",
+      shopifyPreview: "Podgląd Shopify",
+      brandPreview: "Podgląd marki",
+      portfolioLabel: "PORTFOLIO",
+      portfolioTitle: "Pełne portfolio",
+      portfolioSubtitle: "Zobacz wybrane sklepy Shopify, strony internetowe i dodatkowe realizacje w rozszerzonym archiwum.",
+      portfolioButton: "Zobacz pełne portfolio",
+      portfolioPreviewClosed: "Podgląd archiwum",
+      portfolioPreviewOpen: "Ukryj podgląd",
+      archive1Title: "Sklepy Shopify",
+      archive1Subtitle: "Sklepy internetowe i storefronty Shopify",
+      archive2Title: "Strony custom",
+      archive2Subtitle: "Nowoczesne strony kodowane indywidualnie",
+      archive3Title: "Strony usługowe",
+      archive3Subtitle: "Psycholodzy, lokalne firmy i marki usługowe",
+      archive4Title: "Inspiracje wizualne",
+      archive4Subtitle: "Moodboardy, layouty i kierunki wizualne",
+      drivePreviewTitle: "Podgląd portfolio Google Drive",
+      driveOpen: "Otwórz w Google Drive",
+      driveLoading: "Ładowanie archiwum portfolio...",
+      driveNote: "Podgląd Google Drive może pokazywać domyślne ikony folderów. Dla najlepszego efektu otwórz pełne portfolio.",
+      driveFallback: "Jeśli podgląd się nie załaduje, otwórz pełne portfolio w Google Drive.",
+      servicesLabel: "USŁUGI",
+      servicesTitle: "Co tworzę",
+      service1Title: "Projektowanie stron custom",
+      service1Text: "Indywidualne strony dopasowane do marki, celu i odbiorców.",
+      service2Title: "Projektowanie sklepów Shopify",
+      service2Text: "Sklepy budowane pod zaufanie, przejrzystość i sprzedaż.",
+      service3Title: "E-commerce development",
+      service3Text: "Wdrożenia z dopracowaną strukturą produktów, kolekcji i ścieżek zakupowych.",
+      service4Title: "UI/UX design",
+      service4Text: "Przejrzyste doświadczenia, które prowadzą użytkownika do działania.",
+      service5Title: "Optymalizacja szybkości i SEO",
+      service5Text: "Szybsze, czytelne i lepiej przygotowane technicznie strony.",
+      service6Title: "Stałe wsparcie",
+      service6Text: "Rozwój, poprawki i konsultacje po publikacji projektu.",
+      processLabel: "PROCES",
+      processTitle: "Jak wygląda współpraca",
+      process1Title: "Analiza",
+      process1Text: "Poznajemy cele, markę i kierunek projektu.",
+      process2Title: "Plan",
+      process2Text: "Układamy strukturę, treści i strategię konwersji.",
+      process3Title: "Projekt",
+      process3Text: "Tworzymy dopracowany system wizualny dopasowany do marki.",
+      process4Title: "Wdrożenie",
+      process4Text: "Kodujemy szybkie, responsywne i skalowalne doświadczenie.",
+      process5Title: "Publikacja",
+      process5Text: "Testujemy, dopracowujemy i pomagamy wystartować bez chaosu.",
+      whyLabel: "DLACZEGO MY",
+      whyTitle: "Dlaczego Flextstore Design?",
+      why1: "Indywidualne projekty premium",
+      why2: "Podejście nastawione na konwersję",
+      why3: "Szybka realizacja",
+      why4: "Przejrzysta komunikacja",
+      why5: "Bezpieczny i uporządkowany proces",
+      why6: "Shopify + custom code",
+      ctaLabel: "GOTOWY NA START?",
+      ctaTitle: "Zbudujmy coś <span>wyjątkowego</span>",
+      ctaText: "Profesjonalna strona to nie koszt. To inwestycja w wizerunek i rozwój Twojej marki.",
+      footerInstagram: "Instagram",
+      footerPortfolio: "Pełne portfolio",
+      footerCopyright: "© 2026 Flextstore Design. Wszelkie prawa zastrzeżone."
+    },
+    en: {
+      pageTitle: "Flextstore Design | Premium Websites & Shopify Stores",
+      metaDescription: "Flextstore Design creates premium custom websites and Shopify stores for ambitious brands, built for performance, conversion and scale.",
+      navHome: "Home",
+      navWork: "Work",
+      navServices: "Services",
+      navProcess: "Process",
+      navContact: "Contact",
+      whatsappShort: "WhatsApp",
+      whatsappLong: "Message on WhatsApp",
+      instagramHandle: "@flextstore.design",
+      heroBadge: "WE DESIGN • YOU GROW",
+      heroTitle: 'Premium <span class="text-cyan">Websites</span> &amp;<br><span class="text-gradient">Shopify Stores</span>',
+      heroKicker: "Modern. Custom. High Converting.",
+      heroCopy: "Flextstore Design creates premium websites and Shopify stores for ambitious brands. Built for performance. Designed to convert. Made to scale.",
+      heroPrimary: "View Projects",
+      launchCard: "Launching brands beyond limits",
+      scrollExplore: "Scroll to explore",
+      projectsLabel: "Our Work",
+      projectsTitle: "Selected Projects",
+      projectsSubtitle: "Real results for brands that aim higher.",
+      project1Title: "Psychologist Website",
+      project1Type: "Custom Website",
+      project1Badge: "Premium service website",
+      project2Title: "Shopify Store",
+      project2Type: "Shopify Design & Development",
+      project2Badge: "E-commerce ready to sell",
+      project3Title: "Shopify Website",
+      project3Type: "Shopify E-commerce Development",
+      project3Badge: "Optimized for conversions",
+      project4Title: "Shopify Brand Store",
+      project4Type: "Shopify Store Development",
+      project4Badge: "Fast, modern and scalable",
+      poster1Alt: "Psychologist Website poster",
+      poster2Alt: "Shopify Store poster",
+      poster3Alt: "Shopify Website poster",
+      poster4Alt: "Shopify Brand Store poster",
+      project1PreviewAlt: "Psychologist Website preview",
+      project2PreviewAlt: "Shopify Store preview",
+      project3PreviewAlt: "Shopify Website preview",
+      project4PreviewAlt: "Shopify Brand Store preview",
+      previewLoading: "Preview Loading",
+      shopifyPreview: "Shopify Preview",
+      brandPreview: "Brand Preview",
+      portfolioLabel: "Portfolio",
+      portfolioTitle: "Full Portfolio Archive",
+      portfolioSubtitle: "Explore selected Shopify stores, custom websites and visual references in one expanded portfolio archive.",
+      portfolioButton: "View Full Portfolio",
+      portfolioPreviewClosed: "Preview Drive Archive",
+      portfolioPreviewOpen: "Hide Drive Preview",
+      archive1Title: "Shopify Stores",
+      archive1Subtitle: "E-commerce builds and Shopify storefronts",
+      archive2Title: "Custom Websites",
+      archive2Subtitle: "Premium coded websites and landing pages",
+      archive3Title: "Service Websites",
+      archive3Subtitle: "Psychologists, local businesses and service brands",
+      archive4Title: "Visual References",
+      archive4Subtitle: "Moodboards, layouts and selected visual direction",
+      drivePreviewTitle: "Google Drive Portfolio Preview",
+      driveOpen: "Open in Google Drive",
+      driveLoading: "Loading portfolio archive...",
+      driveNote: "Google Drive preview may display default folder icons. For the best experience, open the full portfolio.",
+      driveFallback: "If the preview does not load, open the full portfolio in Google Drive.",
+      servicesLabel: "Services",
+      servicesTitle: "What We Do",
+      service1Title: "Custom Website Design",
+      service1Text: "Distinctive interfaces shaped around your brand, goals and audience.",
+      service2Title: "Shopify Store Design",
+      service2Text: "Premium storefronts crafted for trust, clarity and conversion.",
+      service3Title: "E-commerce Development",
+      service3Text: "Clean builds with product flows, collections and checkout paths that sell.",
+      service4Title: "UI/UX Design",
+      service4Text: "Polished journeys that make every interaction feel intentional.",
+      service5Title: "Speed & SEO Optimization",
+      service5Text: "Fast, discoverable pages with technical fundamentals handled properly.",
+      service6Title: "Ongoing Support",
+      service6Text: "Reliable improvements, fixes and guidance after launch.",
+      processLabel: "Our Process",
+      processTitle: "Our Proven Process",
+      process1Title: "Discover",
+      process1Text: "We define your goals, market and launch direction.",
+      process2Title: "Plan",
+      process2Text: "We map the structure, content and conversion strategy.",
+      process3Title: "Design",
+      process3Text: "We create a premium visual system that fits your brand.",
+      process4Title: "Develop",
+      process4Text: "We build a clean, responsive and scalable experience.",
+      process5Title: "Launch",
+      process5Text: "We test, polish and help your site go live with confidence.",
+      whyLabel: "Why Choose Us",
+      whyTitle: "Why Flextstore Design?",
+      why1: "Premium & custom solutions",
+      why2: "Conversion-focused approach",
+      why3: "Fast delivery",
+      why4: "Transparent communication",
+      why5: "Safe and structured workflow",
+      why6: "Shopify + custom code expertise",
+      ctaLabel: "Ready to launch?",
+      ctaTitle: "Let's Build Something <span>Extraordinary</span>",
+      ctaText: "A premium website is not just an expense. It is an investment in your brand's future.",
+      footerInstagram: "Instagram",
+      footerPortfolio: "Full Portfolio",
+      footerCopyright: "© 2026 Flextstore Design. All rights reserved."
+    }
+  };
 
   const isReduced = () => reducedMotionQuery.matches;
   const isSmall = () => smallScreenQuery.matches;
   const canUseMotion = () => !isReduced();
   const canUseDesktopPointer = () => canUseMotion() && !isSmall();
+
+  const getCopy = (key, lang = currentLanguage) => translations[lang]?.[key] || translations.pl[key] || "";
+
+  const applyLanguage = (lang) => {
+    const nextLanguage = translations[lang] ? lang : "pl";
+    currentLanguage = nextLanguage;
+    document.documentElement.lang = nextLanguage;
+    document.title = getCopy("pageTitle", nextLanguage);
+    if (metaDescription) metaDescription.setAttribute("content", getCopy("metaDescription", nextLanguage));
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const value = getCopy(element.dataset.i18n, nextLanguage);
+      if (value) element.textContent = value;
+    });
+
+    document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+      const value = getCopy(element.dataset.i18nHtml, nextLanguage);
+      if (value) element.innerHTML = value;
+    });
+
+    document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+      element.dataset.i18nAttr.split(";").forEach((pair) => {
+        const [attr, key] = pair.split(":").map((item) => item.trim());
+        const value = getCopy(key, nextLanguage);
+        if (attr && value) element.setAttribute(attr, value);
+      });
+    });
+
+    langButtons.forEach((button) => {
+      const isActive = button.dataset.lang === nextLanguage;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    if (portfolioToggle && portfolioPanel) {
+      const isOpen = portfolioPanel.classList.contains("is-open");
+      portfolioToggle.textContent = getCopy(isOpen ? "portfolioPreviewOpen" : "portfolioPreviewClosed", nextLanguage);
+    }
+
+    const activePoster = document.querySelector(".poster-card.is-active");
+    if (activePoster && posterPreviewLabel) posterPreviewLabel.textContent = activePoster.dataset.label || "";
+  };
+
+  const initLanguage = () => {
+    let savedLanguage = "pl";
+    try {
+      savedLanguage = localStorage.getItem(languageStorageKey) || "pl";
+    } catch (error) {
+      savedLanguage = "pl";
+    }
+
+    applyLanguage(savedLanguage);
+
+    langButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextLanguage = button.dataset.lang || "pl";
+        applyLanguage(nextLanguage);
+        try {
+          localStorage.setItem(languageStorageKey, nextLanguage);
+        } catch (error) {
+          // Storage availability should not affect language switching.
+        }
+      });
+    });
+  };
 
   const initYear = () => {
     if (year) year.textContent = new Date().getFullYear();
@@ -271,7 +551,7 @@ const FlextstoreEngine = (() => {
     portfolioToggle.addEventListener("click", () => {
       const isOpen = portfolioPanel.classList.toggle("is-open");
       portfolioPanel.setAttribute("aria-hidden", String(!isOpen));
-      portfolioToggle.textContent = isOpen ? "Hide Drive Preview" : "Preview Drive Archive";
+      portfolioToggle.textContent = getCopy(isOpen ? "portfolioPreviewOpen" : "portfolioPreviewClosed");
 
       if (!isOpen || portfolioIframeShell.querySelector("iframe")) return;
 
@@ -356,6 +636,7 @@ const FlextstoreEngine = (() => {
 
   const init = () => {
     initYear();
+    initLanguage();
     initRocketIntro();
     initHeader();
     initPointerEffects();
