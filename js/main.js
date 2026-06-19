@@ -22,6 +22,11 @@ const FlextstoreEngine = (() => {
   const metaDescription = document.querySelector('meta[name="description"]');
   const testimonialVideos = document.querySelectorAll(".testimonial-video");
   const testimonialPlayButtons = document.querySelectorAll(".testimonial-play");
+  const reviewImageCards = document.querySelectorAll(".testimonial-image-card");
+  const reviewPreviewOverlay = document.querySelector(".review-preview-overlay");
+  const reviewPreviewImage = document.querySelector(".review-preview-img");
+  const reviewPreviewLabel = document.querySelector(".review-preview-label");
+  const reviewPreviewClose = document.querySelector(".review-preview-close");
 
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const smallScreenQuery = window.matchMedia("(max-width: 767px)");
@@ -108,6 +113,8 @@ const FlextstoreEngine = (() => {
       reviewLabelCollaboration: "Współpraca",
       videoReviewLabel: "Opinia wideo",
       playReview: "Odtwórz opinię",
+      reviewPreviewAria: "Podgląd opinii",
+      reviewPreviewClose: "Zamknij podgląd opinii",
       reviewImage1Alt: "Opinia klienta Flextstore Design",
       reviewImage2Alt: "Opinia o realizacji strony lub sklepu",
       reviewImage3Alt: "Opinia o współpracy z Flextstore Design",
@@ -224,6 +231,8 @@ const FlextstoreEngine = (() => {
       reviewLabelCollaboration: "Collaboration",
       videoReviewLabel: "Video review",
       playReview: "Play review",
+      reviewPreviewAria: "Review preview",
+      reviewPreviewClose: "Close review preview",
       reviewImage1Alt: "Flextstore Design client review",
       reviewImage2Alt: "Website or store project review",
       reviewImage3Alt: "Collaboration review for Flextstore Design",
@@ -706,6 +715,76 @@ const FlextstoreEngine = (() => {
     });
   };
 
+  const closeReviewPreview = () => {
+    if (!reviewPreviewOverlay) return;
+    reviewPreviewOverlay.classList.remove("is-active", "is-interactive");
+    body.classList.remove("review-preview-open");
+    reviewPreviewOverlay.setAttribute("aria-hidden", "true");
+  };
+
+  const showReviewPreview = (card, options = {}) => {
+    if (!reviewPreviewOverlay || !reviewPreviewImage || !reviewPreviewLabel || !card) return;
+
+    const image = card.querySelector("img");
+    if (!image) return;
+
+    const label = card.querySelector(".testimonial-label")?.textContent?.trim() || getCopy("reviewLabelClient");
+    reviewPreviewImage.src = image.currentSrc || image.src;
+    reviewPreviewImage.alt = image.alt || label;
+    reviewPreviewLabel.textContent = label;
+    reviewPreviewOverlay.classList.add("is-active");
+    reviewPreviewOverlay.classList.toggle("is-interactive", Boolean(options.interactive));
+    reviewPreviewOverlay.setAttribute("aria-hidden", "false");
+
+    if (options.interactive) {
+      body.classList.add("review-preview-open");
+    }
+  };
+
+  const initReviewPreview = () => {
+    if (!reviewImageCards.length || !reviewPreviewOverlay) return;
+
+    reviewImageCards.forEach((card) => {
+      card.addEventListener("pointerenter", () => {
+        if (!isSmall()) showReviewPreview(card);
+      }, { passive: true });
+
+      card.addEventListener("pointerleave", () => {
+        if (!isSmall()) closeReviewPreview();
+      }, { passive: true });
+
+      card.addEventListener("focus", () => {
+        if (!isSmall()) showReviewPreview(card);
+      });
+
+      card.addEventListener("blur", () => {
+        if (!isSmall()) closeReviewPreview();
+      });
+
+      card.addEventListener("click", () => {
+        if (isSmall()) showReviewPreview(card, { interactive: true });
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        showReviewPreview(card, { interactive: true });
+      });
+    });
+
+    reviewPreviewClose?.addEventListener("click", closeReviewPreview);
+
+    reviewPreviewOverlay.addEventListener("click", (event) => {
+      if (event.target === reviewPreviewOverlay) closeReviewPreview();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && reviewPreviewOverlay.classList.contains("is-active")) {
+        closeReviewPreview();
+      }
+    });
+  };
+
   const pauseAllTestimonialVideos = (exceptVideo = null) => {
     testimonialVideos.forEach((video) => {
       if (!video || video === exceptVideo) return;
@@ -836,6 +915,7 @@ const FlextstoreEngine = (() => {
     initHeader();
     initPointerEffects();
     initPosterPreview();
+    initReviewPreview();
     initVideos();
     initPortfolioPreview();
     initTestimonials();

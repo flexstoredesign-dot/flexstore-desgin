@@ -382,7 +382,7 @@
       </div>
 
       <div class="testimonial-image-grid">
-        <article class="testimonial-card testimonial-image-card">
+        <article class="testimonial-card testimonial-image-card" tabindex="0">
           <span class="testimonial-stars" aria-hidden="true"></span>
           <span class="testimonial-label" data-i18n="reviewLabelClient">Opinia klienta</span>
           <div class="testimonial-image-frame">
@@ -390,7 +390,7 @@
           </div>
         </article>
 
-        <article class="testimonial-card testimonial-image-card">
+        <article class="testimonial-card testimonial-image-card" tabindex="0">
           <span class="testimonial-stars" aria-hidden="true"></span>
           <span class="testimonial-label" data-i18n="reviewLabelProject">Realizacja strony/sklepu</span>
           <div class="testimonial-image-frame">
@@ -398,7 +398,7 @@
           </div>
         </article>
 
-        <article class="testimonial-card testimonial-image-card">
+        <article class="testimonial-card testimonial-image-card" tabindex="0">
           <span class="testimonial-stars" aria-hidden="true"></span>
           <span class="testimonial-label" data-i18n="reviewLabelCollaboration">Współpraca</span>
           <div class="testimonial-image-frame">
@@ -437,6 +437,17 @@
         </article>
       </div>
     </section>
+
+    <div class="review-preview-overlay" aria-hidden="true">
+      <div class="review-preview" role="dialog" aria-modal="true" aria-label="Review preview" data-i18n-attr="aria-label:reviewPreviewAria">
+        <button class="review-preview-close" type="button" data-i18n-attr="aria-label:reviewPreviewClose">
+          <span aria-hidden="true">×</span>
+        </button>
+        <span class="review-preview-shine" aria-hidden="true"></span>
+        <img class="review-preview-img" alt="">
+        <div class="review-preview-label"></div>
+      </div>
+    </div>
 
     <div class="studio-dashboard section-shell">
     <section class="services dashboard-panel" id="services">

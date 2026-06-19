@@ -61,6 +61,12 @@ body.menu-open {
   overscroll-behavior: contain;
 }
 
+body.review-preview-open {
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
 body.menu-open .site-header {
   z-index: 10000;
 }
@@ -1601,7 +1607,8 @@ h3 {
 }
 
 .testimonial-image-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 300px));
+  justify-content: center;
   margin-bottom: 24px;
 }
 
@@ -1645,6 +1652,13 @@ h3 {
   transform: translateX(120%);
 }
 
+.testimonial-image-card {
+  width: 100%;
+  max-width: 300px;
+  margin-inline: auto;
+  cursor: zoom-in;
+}
+
 .testimonial-stars {
   position: absolute;
   inset: 0;
@@ -1683,9 +1697,9 @@ h3 {
 }
 
 .testimonial-image-frame {
-  aspect-ratio: 9 / 13;
   display: grid;
   place-items: center;
+  height: 400px;
   padding: 10px;
 }
 
@@ -1775,6 +1789,122 @@ h3 {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+.review-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(139, 61, 255, 0.18), transparent 38%),
+    radial-gradient(circle at 48% 78%, rgba(0, 217, 255, 0.14), transparent 42%),
+    rgba(5, 7, 17, 0.72);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.review-preview-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.review-preview-overlay.is-interactive {
+  pointer-events: auto;
+}
+
+.review-preview {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  max-width: min(88vw, 900px);
+  max-height: 86vh;
+  border: 1px solid rgba(0, 217, 255, 0.35);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(0, 217, 255, 0.08), transparent 36%),
+    linear-gradient(145deg, rgba(8, 13, 32, 0.96), rgba(3, 5, 14, 0.98));
+  box-shadow: 0 0 38px rgba(0, 217, 255, 0.2), 0 0 74px rgba(139, 61, 255, 0.2), 0 24px 80px rgba(0, 0, 0, 0.58);
+  opacity: 0;
+  transform: translate3d(0, 16px, 0) scale(0.94);
+  transition: opacity 0.24s ease, transform 0.26s ease;
+}
+
+.review-preview-overlay.is-active .review-preview {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.review-preview-img {
+  display: block;
+  width: auto;
+  max-width: min(88vw, 900px);
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 22px;
+  background: #050711;
+}
+
+.review-preview-label {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 2;
+  border: 1px solid rgba(0, 217, 255, 0.28);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #eafcff;
+  background: rgba(5, 7, 17, 0.76);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.review-preview-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.12), transparent 38%);
+  transform: translateX(-125%);
+}
+
+.review-preview-overlay.is-active .review-preview-shine {
+  animation: reviewPreviewShine 1.15s ease forwards;
+}
+
+.review-preview-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(0, 217, 255, 0.28);
+  border-radius: 50%;
+  color: #ffffff;
+  background: rgba(5, 7, 17, 0.82);
+  font: inherit;
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.review-preview-overlay.is-interactive .review-preview-close {
+  display: grid;
+  place-items: center;
+}
+
+@keyframes reviewPreviewShine {
+  to {
+    transform: translateX(125%);
+  }
 }
 
 .section-heading {
@@ -3504,7 +3634,8 @@ h2 {
   }
 
   .testimonial-image-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 300px));
+    justify-content: center;
   }
 
   .testimonial-video-grid {
@@ -3963,6 +4094,14 @@ h2 {
     text-align: center;
   }
 
+  .testimonial-image-card {
+    max-width: 320px;
+  }
+
+  .testimonial-image-frame {
+    height: min(118vw, 420px);
+  }
+
   .testimonial-label {
     margin-inline: auto;
   }
@@ -3970,6 +4109,24 @@ h2 {
   .testimonial-play {
     width: min(calc(100% - 32px), 260px);
     min-height: 48px;
+  }
+
+  .review-preview-overlay.is-active {
+    pointer-events: auto;
+  }
+
+  .review-preview {
+    max-width: min(92vw, 520px);
+  }
+
+  .review-preview-img {
+    max-width: 92vw;
+    max-height: 82vh;
+  }
+
+  .review-preview-close {
+    display: grid;
+    place-items: center;
   }
 
   .poster-preview {
