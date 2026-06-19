@@ -638,6 +638,12 @@ h3 {
   line-height: 1.8;
 }
 
+.hero-copy-secondary {
+  margin-top: -18px;
+  color: #d2daeb;
+  font-size: 0.98rem;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -977,6 +983,7 @@ h3 {
 
 .projects,
 .portfolio,
+.testimonials,
 .services,
 .process,
 .why,
@@ -1221,6 +1228,7 @@ h3 {
 
 .projects::before,
 .portfolio::before,
+.testimonials::before,
 .services::before,
 .process::before,
 .why::before {
@@ -1584,6 +1592,189 @@ h3 {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 800;
+}
+
+.testimonial-image-grid,
+.testimonial-video-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.testimonial-image-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 24px;
+}
+
+.testimonial-video-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 217, 255, 0.18);
+  border-radius: 8px;
+  padding: 16px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(0, 217, 255, 0.1), transparent 34%),
+    radial-gradient(circle at 86% 18%, rgba(139, 61, 255, 0.12), transparent 36%),
+    linear-gradient(145deg, rgba(10, 17, 39, 0.78), rgba(4, 7, 19, 0.74));
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), inset 0 0 22px rgba(0, 217, 255, 0.035);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.testimonial-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.11), transparent 38%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+
+.testimonial-card:hover {
+  transform: translate3d(0, -6px, 0);
+  border-color: rgba(0, 217, 255, 0.36);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.34), 0 0 26px rgba(139, 61, 255, 0.16);
+}
+
+.testimonial-card:hover::after {
+  transform: translateX(120%);
+}
+
+.testimonial-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 22%, rgba(255, 255, 255, 0.76) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 82% 26%, rgba(0, 217, 255, 0.62) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 68% 78%, rgba(192, 77, 255, 0.56) 0 1px, transparent 1.6px);
+  opacity: 0.42;
+}
+
+.testimonial-label {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #dff9ff;
+  background: rgba(5, 7, 17, 0.68);
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.testimonial-image-frame,
+.testimonial-video-frame {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(3, 5, 14, 0.78);
+}
+
+.testimonial-image-frame {
+  aspect-ratio: 9 / 13;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+}
+
+.testimonial-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #050711;
+}
+
+.testimonial-video-frame {
+  aspect-ratio: 16 / 10;
+}
+
+.testimonial-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #03050e;
+}
+
+.testimonial-video-cover {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(0, 217, 255, 0.18), transparent 26%),
+    radial-gradient(circle at 58% 58%, rgba(139, 61, 255, 0.18), transparent 34%),
+    linear-gradient(145deg, rgba(7, 12, 30, 0.92), rgba(3, 5, 14, 0.9));
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.testimonial-play-orbit {
+  position: relative;
+  display: block;
+  width: 76px;
+  height: 76px;
+  border: 1px solid rgba(0, 217, 255, 0.34);
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(0, 217, 255, 0.18), inset 0 0 18px rgba(139, 61, 255, 0.08);
+}
+
+.testimonial-play-orbit::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 18px solid #ffffff;
+  transform: translate(31px, 26px);
+  filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.5));
+}
+
+.testimonial-play {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 3;
+  min-height: 44px;
+  border: 1px solid rgba(0, 217, 255, 0.34);
+  border-radius: 999px;
+  padding: 0 18px;
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.18), rgba(139, 61, 255, 0.24));
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.testimonial-play:hover,
+.testimonial-play:focus-visible {
+  transform: translateX(-50%) translateY(-2px);
+  border-color: rgba(0, 217, 255, 0.58);
+  box-shadow: 0 0 24px rgba(0, 217, 255, 0.18), 0 0 28px rgba(139, 61, 255, 0.18);
+}
+
+.testimonial-video-card.is-playing .testimonial-video-cover,
+.testimonial-video-card.is-playing .testimonial-play {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .section-heading {
@@ -3312,6 +3503,15 @@ h2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .testimonial-image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .testimonial-video-grid {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+  }
+
   .studio-dashboard {
     grid-template-columns: 1fr;
     padding: 62px 0;
@@ -3467,6 +3667,7 @@ h2 {
 
   .projects,
   .portfolio,
+  .testimonials,
   .services,
   .process,
   .why,
@@ -3638,6 +3839,7 @@ h2 {
   }
 
   .project-card,
+  .testimonial-card,
   .service-card,
   .process-step,
   .final-cta {
@@ -3712,6 +3914,8 @@ h2 {
   .project-grid,
   .poster-showcase,
   .archive-grid,
+  .testimonial-image-grid,
+  .testimonial-video-grid,
   .services-grid,
   .process-track,
   .why-list {
@@ -3749,6 +3953,7 @@ h2 {
 
   .poster-card,
   .project-card,
+  .testimonial-card,
   .service-card,
   .archive-card,
   .process-step {
@@ -3756,6 +3961,15 @@ h2 {
     max-width: 430px;
     margin-inline: auto;
     text-align: center;
+  }
+
+  .testimonial-label {
+    margin-inline: auto;
+  }
+
+  .testimonial-play {
+    width: min(calc(100% - 32px), 260px);
+    min-height: 48px;
   }
 
   .poster-preview {
@@ -3914,6 +4128,14 @@ h2 {
 
   .archive-card {
     min-height: 174px;
+  }
+
+  .testimonial-card {
+    padding: 12px;
+  }
+
+  .testimonial-video-frame {
+    aspect-ratio: 4 / 5;
   }
 
   .portfolio-viewer {

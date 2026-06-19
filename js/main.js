@@ -20,6 +20,8 @@ const FlextstoreEngine = (() => {
   const portfolioIframeShell = document.querySelector(".portfolio-iframe-shell");
   const langButtons = document.querySelectorAll(".lang-button");
   const metaDescription = document.querySelector('meta[name="description"]');
+  const testimonialVideos = document.querySelectorAll(".testimonial-video");
+  const testimonialPlayButtons = document.querySelectorAll(".testimonial-play");
 
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const smallScreenQuery = window.matchMedia("(max-width: 767px)");
@@ -44,17 +46,18 @@ const FlextstoreEngine = (() => {
       navContact: "Kontakt",
       whatsappShort: "WhatsApp",
       whatsappLong: "Napisz na WhatsApp",
-      instagramHandle: "@flextstore.design",
+      instagramHandle: "@flextstore_design.pl",
       heroBadge: "PROJEKTUJEMY • TY ROŚNIESZ",
       heroTitle: '<span class="text-cyan">Strony internetowe premium</span> &amp;<br><span class="text-gradient">sklepy Shopify</span>',
       heroKicker: "Nowoczesne. Indywidualne. Nastawione na sprzedaż.",
-      heroCopy: "Flextstore Design tworzy nowoczesne strony internetowe i sklepy Shopify dla marek, które chcą wyglądać profesjonalnie, działać szybciej i sprzedawać skuteczniej.",
+      heroCopy: "Pomagamy markom wejść do świata internetu z profesjonalnym wizerunkiem, szybkim sklepem lub stroną, która buduje zaufanie i wspiera rozwój biznesu.",
+      heroCopySecondary: "Od stron usługowych po sklepy Shopify — projektujemy doświadczenia, które wyglądają premium i działają skutecznie.",
       heroPrimary: "Zobacz projekty",
       launchCard: "Wysyłamy marki ponad limity",
       scrollExplore: "Przewiń dalej",
-      projectsLabel: "NASZE REALIZACJE",
-      projectsTitle: "Wybrane projekty",
-      projectsSubtitle: "Realizacje dla marek, które chcą wyglądać lepiej i sprzedawać skuteczniej.",
+      projectsLabel: "REALIZACJE",
+      projectsTitle: "Ostatnie projekty",
+      projectsSubtitle: "Wybrane strony i sklepy, które pomagają markom wyglądać profesjonalnie, działać szybciej i sprzedawać skuteczniej.",
       project1Title: "Strona dla psychologa",
       project1Type: "Strona usługowa",
       project1Badge: "Profesjonalny wizerunek online",
@@ -97,6 +100,17 @@ const FlextstoreEngine = (() => {
       driveLoading: "Ładowanie archiwum portfolio...",
       driveNote: "Podgląd Google Drive może pokazywać domyślne ikony folderów. Dla najlepszego efektu otwórz pełne portfolio.",
       driveFallback: "Jeśli podgląd się nie załaduje, otwórz pełne portfolio w Google Drive.",
+      testimonialsLabel: "OPINIE",
+      testimonialsTitle: "Co mówią klienci",
+      testimonialsSubtitle: "Kilka opinii i materiałów od osób, z którymi współpracowaliśmy przy stronach i sklepach.",
+      reviewLabelClient: "Opinia klienta",
+      reviewLabelProject: "Realizacja strony/sklepu",
+      reviewLabelCollaboration: "Współpraca",
+      videoReviewLabel: "Opinia wideo",
+      playReview: "Odtwórz opinię",
+      reviewImage1Alt: "Opinia klienta Flextstore Design",
+      reviewImage2Alt: "Opinia o realizacji strony lub sklepu",
+      reviewImage3Alt: "Opinia o współpracy z Flextstore Design",
       servicesLabel: "USŁUGI",
       servicesTitle: "Co tworzę",
       service1Title: "Projektowanie stron custom",
@@ -134,7 +148,7 @@ const FlextstoreEngine = (() => {
       ctaLabel: "GOTOWY NA START?",
       ctaTitle: "Zbudujmy coś <span>wyjątkowego</span>",
       ctaText: "Profesjonalna strona to nie koszt. To inwestycja w wizerunek i rozwój Twojej marki.",
-      footerInstagram: "Instagram",
+      footerInstagram: "@flextstore_design.pl",
       footerPortfolio: "Pełne portfolio",
       footerCopyright: "© 2026 Flextstore Design. Wszelkie prawa zastrzeżone."
     },
@@ -148,17 +162,18 @@ const FlextstoreEngine = (() => {
       navContact: "Contact",
       whatsappShort: "WhatsApp",
       whatsappLong: "Message on WhatsApp",
-      instagramHandle: "@flextstore.design",
+      instagramHandle: "@flextstore_design.pl",
       heroBadge: "WE DESIGN • YOU GROW",
       heroTitle: 'Premium <span class="text-cyan">Websites</span> &amp;<br><span class="text-gradient">Shopify Stores</span>',
-      heroKicker: "Modern. Custom. High Converting.",
-      heroCopy: "Flextstore Design creates premium websites and Shopify stores for ambitious brands. Built for performance. Designed to convert. Made to scale.",
+      heroKicker: "Modern. Custom. Built to sell.",
+      heroCopy: "We help brands enter the digital world with a professional online presence, a fast store or a website that builds trust and supports business growth.",
+      heroCopySecondary: "From service websites to Shopify stores — we design digital experiences that look premium and perform with purpose.",
       heroPrimary: "View Projects",
       launchCard: "Launching brands beyond limits",
       scrollExplore: "Scroll to explore",
-      projectsLabel: "Our Work",
-      projectsTitle: "Selected Projects",
-      projectsSubtitle: "Real results for brands that aim higher.",
+      projectsLabel: "PROJECTS",
+      projectsTitle: "Recent Projects",
+      projectsSubtitle: "Selected websites and Shopify stores built to help brands look professional, perform faster and sell more effectively.",
       project1Title: "Psychologist Website",
       project1Type: "Custom Website",
       project1Badge: "Premium service website",
@@ -201,6 +216,17 @@ const FlextstoreEngine = (() => {
       driveLoading: "Loading portfolio archive...",
       driveNote: "Google Drive preview may display default folder icons. For the best experience, open the full portfolio.",
       driveFallback: "If the preview does not load, open the full portfolio in Google Drive.",
+      testimonialsLabel: "REVIEWS",
+      testimonialsTitle: "What Clients Say",
+      testimonialsSubtitle: "A few reviews and materials from people we worked with on websites and Shopify stores.",
+      reviewLabelClient: "Client review",
+      reviewLabelProject: "Website/store project",
+      reviewLabelCollaboration: "Collaboration",
+      videoReviewLabel: "Video review",
+      playReview: "Play review",
+      reviewImage1Alt: "Flextstore Design client review",
+      reviewImage2Alt: "Website or store project review",
+      reviewImage3Alt: "Collaboration review for Flextstore Design",
       servicesLabel: "Services",
       servicesTitle: "What We Do",
       service1Title: "Custom Website Design",
@@ -238,7 +264,7 @@ const FlextstoreEngine = (() => {
       ctaLabel: "Ready to launch?",
       ctaTitle: "Let's Build Something <span>Extraordinary</span>",
       ctaText: "A premium website is not just an expense. It is an investment in your brand's future.",
-      footerInstagram: "Instagram",
+      footerInstagram: "@flextstore_design.pl",
       footerPortfolio: "Full Portfolio",
       footerCopyright: "© 2026 Flextstore Design. All rights reserved."
     }
@@ -327,6 +353,7 @@ const FlextstoreEngine = (() => {
       menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
       if (isOpen) {
         pauseAllProjectVideos();
+        pauseAllTestimonialVideos();
       } else {
         syncProjectVideos();
       }
@@ -679,6 +706,66 @@ const FlextstoreEngine = (() => {
     });
   };
 
+  const pauseAllTestimonialVideos = (exceptVideo = null) => {
+    testimonialVideos.forEach((video) => {
+      if (!video || video === exceptVideo) return;
+      video.pause();
+      video.closest(".testimonial-video-card")?.classList.remove("is-playing");
+    });
+  };
+
+  const initTestimonials = () => {
+    if (!testimonialVideos.length) return;
+
+    testimonialVideos.forEach((video) => {
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.controls = false;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.pause();
+
+      video.addEventListener("pause", () => {
+        if (!video.ended) return;
+        video.closest(".testimonial-video-card")?.classList.remove("is-playing");
+      });
+    });
+
+    testimonialPlayButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const card = button.closest(".testimonial-video-card");
+        const video = card?.querySelector(".testimonial-video");
+        if (!video) return;
+
+        pauseAllTestimonialVideos(video);
+        card.classList.add("is-playing");
+
+        video.controls = true;
+        video.muted = false;
+        video.removeAttribute("muted");
+        video.setAttribute("playsinline", "");
+        video.setAttribute("webkit-playsinline", "");
+
+        if (video.dataset.loaded !== "true") {
+          video.dataset.loaded = "true";
+          video.preload = "auto";
+          try {
+            video.load();
+          } catch (error) {
+            // Keep the designed cover visible if the browser rejects the media.
+          }
+        }
+
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {
+            card.classList.remove("is-playing");
+          });
+        }
+      });
+    });
+  };
+
   const initScrollAnimations = () => {
     if (!window.gsap) return;
 
@@ -690,7 +777,7 @@ const FlextstoreEngine = (() => {
     }
 
     if (isReduced()) {
-      gsap.set(".site-header, .hero-badge, .hero h1, .hero-kicker, .hero-copy, .hero-actions, .hero-visual, .poster-card, .project-card, .portfolio-card, .archive-card, .service-card, .process-step, .why-content, .astronaut-visual, .final-cta", {
+      gsap.set(".site-header, .hero-badge, .hero h1, .hero-kicker, .hero-copy, .hero-actions, .hero-visual, .poster-card, .project-card, .portfolio-card, .archive-card, .testimonial-card, .service-card, .process-step, .why-content, .astronaut-visual, .final-cta", {
         opacity: 1,
         y: 0,
         clearProps: "transform"
@@ -727,6 +814,7 @@ const FlextstoreEngine = (() => {
     revealGroup(".poster-card", ".projects", { y: isMobile ? 12 : 20 });
     revealGroup(".project-card", ".projects");
     revealGroup(".portfolio-card, .archive-card", ".portfolio");
+    revealGroup(".testimonial-card", ".testimonials");
     revealGroup(".service-card", ".services");
     revealGroup(".process-step", ".process", { y: 24 });
     revealGroup(".why-content, .astronaut-visual", ".why", { stagger: 0.12 });
@@ -750,6 +838,7 @@ const FlextstoreEngine = (() => {
     initPosterPreview();
     initVideos();
     initPortfolioPreview();
+    initTestimonials();
     window.addEventListener("load", initScrollAnimations, { once: true });
   };
 
