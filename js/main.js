@@ -286,6 +286,52 @@ const FlextstoreEngine = (() => {
 
   const getCopy = (key, lang = currentLanguage) => translations[lang]?.[key] || translations.pl[key] || "";
 
+  function trackGAEvent(eventName, params = {}) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, params);
+    }
+  }
+
+  const getAnalyticsParams = (element) => ({
+    link_url: element?.href || element?.dataset?.iframeSrc || "",
+    link_text: (element?.textContent || "").replace(/\s+/g, " ").trim() || "",
+    page_location: window.location.href
+  });
+
+  const getAnalyticsEventName = (element) => {
+    if (!element) return "";
+
+    const analyticsType = element.dataset.analytics || "";
+    const href = element.href || element.dataset.iframeSrc || "";
+    const linkText = (element.textContent || "").replace(/\s+/g, " ").trim();
+
+    if (analyticsType === "lang-pl") return "change_language_pl";
+    if (analyticsType === "lang-en") return "change_language_en";
+    if (analyticsType === "whatsapp" || href.includes("wa.me")) return "click_whatsapp";
+    if (analyticsType === "instagram" || href.includes("instagram.com")) return "click_instagram";
+    if (
+      analyticsType === "full-portfolio" ||
+      href.includes("drive.google.com") ||
+      /full portfolio|pełne portfolio|portfolio|google drive/i.test(linkText)
+    ) {
+      return "click_full_portfolio";
+    }
+
+    return "";
+  };
+
+  const initAnalytics = () => {
+    document.addEventListener("click", (event) => {
+      const element = event.target.closest("[data-analytics], a, button");
+      if (!element) return;
+
+      const eventName = getAnalyticsEventName(element);
+      if (!eventName) return;
+
+      trackGAEvent(eventName, getAnalyticsParams(element));
+    });
+  };
+
   const applyLanguage = (lang) => {
     const nextLanguage = translations[lang] ? lang : "pl";
     currentLanguage = nextLanguage;
@@ -910,6 +956,7 @@ const FlextstoreEngine = (() => {
 
   const init = () => {
     initYear();
+    initAnalytics();
     initLanguage();
     initRocketIntro();
     initHeader();

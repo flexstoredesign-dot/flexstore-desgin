@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YSGZ8BSMYH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-YSGZ8BSMYH');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Flextstore Design tworzy nowoczesne strony internetowe i sklepy Shopify dla marek, które chcą wyglądać profesjonalnie i sprzedawać skuteczniej.">
@@ -52,11 +61,11 @@
         <span data-i18n="whatsappLong">Napisz na WhatsApp</span>
       </a>
       <div class="language-switcher" aria-label="Wybór języka">
-        <button class="lang-button is-active" type="button" data-lang="pl" aria-pressed="true">
+        <button class="lang-button is-active" type="button" data-lang="pl" data-analytics="lang-pl" aria-pressed="true">
           <span class="flag" aria-hidden="true">🇵🇱</span>
           <span>PL</span>
         </button>
-        <button class="lang-button" type="button" data-lang="en" aria-pressed="false">
+        <button class="lang-button" type="button" data-lang="en" data-analytics="lang-en" aria-pressed="false">
           <span class="flag" aria-hidden="true">🇬🇧</span>
           <span>EN</span>
         </button>
